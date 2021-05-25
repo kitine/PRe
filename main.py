@@ -23,12 +23,14 @@ y1=np.zeros(n)
 y2=np.zeros(n)
 i=0
 for k in x:
-	Y=hs.harmonique(l,k)
+	Y=hs.harmonique(l,k,'tab')
 	y1[i]=Y[l,m]
 	i+=1
 #Python 
 y2=scipy.special.sph_harm(m, l, 0, x)
 
+hihi=hs.harmonique(l,x,3)
+print(hihi)
 
 """
 Plot 
@@ -49,10 +51,8 @@ Comparaison du temps
 x0=math.pi/2
 #Ma fonction
 ti1=time.time()
-Y=hs.harmonique(l,x0)
+Y=hs.harmonique(l,x0,'tab')
 tf1=time.time()-ti1
-print(tf1)
-
 #Celle de python 
 ti2=time.time()
 Ypyt=np.zeros((l+1,2*l+1))
@@ -61,5 +61,6 @@ for L in range (0,l+1):
 		Ypyt[L,m]=scipy.special.sph_harm(m, L ,0, x0)
 		Ypyt[L,-m]=scipy.special.sph_harm(-m, L ,0, x0)
 tf2=time.time()-ti2
-print(tf2)
-#je suis plus rapide hehee 
+
+#je suis plus rapide hehee efin sauf pour les grands l D:
+
